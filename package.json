@@ -1,0 +1,15 @@
+{
+    "name": "handsontable-wavt",
+    "version": "1.0.0",
+    "description": "",
+    "main": "gulpfile.js",
+    "private": true,
+    "dependencies": {
+        "@bower_components/handsontable-pro": "handsontable/handsontable#=7.4.2"
+    },
+    "author": "Ross Willett",
+    "license": "UNLICENSED",
+    "engines": {
+        "yarn": ">= 1.0.0"
+    }
+}
