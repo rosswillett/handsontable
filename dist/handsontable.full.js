@@ -59850,7 +59850,7 @@ function condition(dataRow, _ref) {
   var _ref2 = (0, _slicedToArray2.default)(_ref, 1),
       value = _ref2[0];
 
-  return (0, _mixed.stringify)(dataRow.value).toLowerCase() === (0, _mixed.stringify)(value);
+  return (0, _mixed.stringify)(dataRow.value) === (0, _mixed.stringify)(value);
 }
 
 (0, _conditionRegisterer.registerCondition)(CONDITION_NAME, condition, {
