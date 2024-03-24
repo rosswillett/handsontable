@@ -60280,7 +60280,7 @@ function () {
     value: function addCondition(column, conditionDefinition) {
       var operation = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : _conjunction.OPERATION_ID;
       var args = (0, _array.arrayMap)(conditionDefinition.args, function (v) {
-        return typeof v === 'string' ? v.toLowerCase() : v;
+        return v;
       });
       var name = conditionDefinition.name || conditionDefinition.command.key;
       this.runLocalHooks('beforeAdd', column);
