@@ -68687,6 +68687,7 @@ function numericRenderer(instance, TD, row, col, prop, value, cellProperties) {
   if ((0, _number.isNumeric)(newValue)) {
     var numericFormat = cellProperties.numericFormat;
     var cellCulture = numericFormat && numericFormat.culture || '-';
+    var unformat = numericFormat && numericFormat.unformat;
     var cellFormatPattern = numericFormat && numericFormat.pattern;
     var className = cellProperties.className || '';
     var classArr = className.length ? className.split(' ') : [];
@@ -68703,6 +68704,9 @@ function numericRenderer(instance, TD, row, col, prop, value, cellProperties) {
     _numbro.default.setLanguage(cellCulture);
 
     newValue = (0, _numbro.default)(newValue).format(cellFormatPattern || '0');
+    if(unformat){
+        newValue = numbro.unformat(newValue);
+    }
 
     if (classArr.indexOf('htLeft') < 0 && classArr.indexOf('htCenter') < 0 && classArr.indexOf('htRight') < 0 && classArr.indexOf('htJustify') < 0) {
       classArr.push('htRight');
