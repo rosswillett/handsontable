@@ -40137,6 +40137,17 @@ function Core(rootElement, userSettings) {
       instance.view.wt.wtOverlays.updateMainScrollableElements();
     }
   };
+
+  this.getRealSourceRow = function(id){
+    if(this.sortIndex == undefined){
+        return id;
+    }
+    if(this.sortIndex.length == 0){
+        return this.getPlugin('filters').trimRowsPlugin.rowsMapper.__arrayMap[id]
+    }
+    return this.getPlugin('filters').trimRowsPlugin.rowsMapper.__arrayMap[this.sortIndex[id][0]];
+  };
+
   /**
    * Get value from the selected cell.
    *
