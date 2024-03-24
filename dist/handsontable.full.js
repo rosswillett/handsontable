@@ -60038,10 +60038,24 @@ var CONDITION_NAME = 'contains';
 exports.CONDITION_NAME = CONDITION_NAME;
 
 function condition(dataRow, _ref) {
-  var _ref2 = (0, _slicedToArray2.default)(_ref, 1),
-      value = _ref2[0];
+  let value = _ref[0];
+  let regexAdder = '';
+  let matches = value.match(/^(\/?)(.*?)(\/?)(i?)$/);
 
-  return (0, _mixed.stringify)(dataRow.value).toLowerCase().indexOf((0, _mixed.stringify)(value)) >= 0;
+  value = matches[2];
+  if(matches[3] === '/'){
+    regexAdder = matches[4];
+  }else{
+    value += matches[4];
+  }
+
+  let regex = new RegExp(value,regexAdder);
+
+  let td = document.createElement('td');
+  const meta = this.getCellMeta(dataRow.meta.row,dataRow.meta.col);
+  this.getCellRenderer(dataRow.meta.row,dataRow.meta.col)(this,td,dataRow.meta.row,dataRow.meta.col,meta.prop,dataRow.value,meta);
+
+  return td.innerText.search(regex) >= 0;
 }
 
 (0, _conditionRegisterer.registerCondition)(CONDITION_NAME, condition, {
@@ -99772,8 +99786,25 @@ var _contains = __webpack_require__(409);
 var CONDITION_NAME = 'not_contains';
 exports.CONDITION_NAME = CONDITION_NAME;
 
-function condition(dataRow, inputValues) {
-  return !(0, _conditionRegisterer.getCondition)(_contains.CONDITION_NAME, inputValues)(dataRow);
+function condition(dataRow, _ref) {
+  let value = _ref[0];
+  let regexAdder = '';
+  let matches = value.match(/^(\/?)(.*?)(\/?)(i?)$/);
+
+  value = matches[2];
+  if(matches[3] === '/'){
+    regexAdder = matches[4];
+  }else{
+    value += matches[4];
+  }
+
+  let regex = new RegExp(value,regexAdder);
+
+  let td = document.createElement('td');
+  const meta = this.getCellMeta(dataRow.meta.row,dataRow.meta.col);
+  this.getCellRenderer(dataRow.meta.row,dataRow.meta.col)(this,td,dataRow.meta.row,dataRow.meta.col,meta.prop,dataRow.value,meta);
+
+  return td.innerText.search(regex) === -1;
 }
 
 (0, _conditionRegisterer.registerCondition)(CONDITION_NAME, condition, {
